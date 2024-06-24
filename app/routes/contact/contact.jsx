@@ -31,13 +31,13 @@ const MAX_MESSAGE_LENGTH = 4096;
 const EMAIL_PATTERN = /(.+)@(.+){2,}\.(.+){2,}/;
 
 export async function action({ context, request }) {
-  const ses = new SESClient({
-    region: 'us-east-1',
-    credentials: {
-      accessKeyId: context.cloudflare.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: context.cloudflare.env.AWS_SECRET_ACCESS_KEY,
-    },
-  });
+  // const ses = new SESClient({
+  //   region: 'us-east-1',
+  //   credentials: {
+  //     accessKeyId: context.cloudflare.env.AWS_ACCESS_KEY_ID,
+  //     secretAccessKey: context.cloudflare.env.AWS_SECRET_ACCESS_KEY,
+  //   },
+  // });
 
   const formData = await request.formData();
   const isBot = String(formData.get('name'));
@@ -70,25 +70,25 @@ export async function action({ context, request }) {
   }
 
   // Send email via Amazon SES
-  await ses.send(
-    new SendEmailCommand({
-      Destination: {
-        ToAddresses: [context.cloudflare.env.EMAIL],
-      },
-      Message: {
-        Body: {
-          Text: {
-            Data: `From: ${email}\n\n${message}`,
-          },
-        },
-        Subject: {
-          Data: `Portfolio message from ${email}`,
-        },
-      },
-      Source: `Portfolio <${context.cloudflare.env.FROM_EMAIL}>`,
-      ReplyToAddresses: [email],
-    })
-  );
+  // await ses.send(
+  //   new SendEmailCommand({
+  //     Destination: {
+  //       ToAddresses: [context.cloudflare.env.EMAIL],
+  //     },
+  //     Message: {
+  //       Body: {
+  //         Text: {
+  //           Data: `From: ${email}\n\n${message}`,
+  //         },
+  //       },
+  //       Subject: {
+  //         Data: `Portfolio message from ${email}`,
+  //       },
+  //     },
+  //     Source: `Portfolio <${context.cloudflare.env.FROM_EMAIL}>`,
+  //     ReplyToAddresses: [email],
+  //   })
+  // );
 
   return json({ success: true });
 }
