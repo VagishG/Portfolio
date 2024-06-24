@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./app/*"]
+    },
+    "types": [
+      "acorn",
+      "aria-query",
+      "babel__traverse",
+      "body-parser",
+      "chai",
+      "connect",
+      "cookie",
+      "cross-spawn",
+      "debug",
+      "detect-port",
+      "doctrine",
+      "draco3d",
+      "ejs",
+      "emscripten",
+      "escodegen",
+      "estree-jsx",
+      "express",
+      "express-serve-static-core",
+      "find-cache-dir",
+      "glob",
+      "graceful-fs",
+      "hast",
+      "http-errors",
+      "istanbul-lib-coverage",
+      "istanbul-lib-report",
+      "istanbul-reports",
+      "lodash",
+      "mdast",
+      "mdx",
+      "mime",
+      "node",
+      "offscreencanvas",
+      "pretty-hrtime",
+      "prop-types",
+      "qs",
+      "react",
+      "resolve",
+      "scheduler",
+      "semver",
+      "uuid"
+    ]
+  },
+  "include": ["app", ".storybook/story-container.jsx"]
+}
