@@ -85,12 +85,12 @@ export const meta = () => {
 };
 
 export const SmartSparrow = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
   const isDark = theme === 'dark';
   const themes = ['dark', 'light'];
 
   const handleThemeChange = index => {
-    toggleTheme(themes[index]);
+    // toggleTheme(themes[index]);
   };
 
   return (

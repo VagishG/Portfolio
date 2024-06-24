@@ -16,7 +16,7 @@ export const ThemeProvider = ({
   children,
   className,
   as: Component = 'div',
-  toggleTheme,
+  // toggleTheme,
   ...rest
 }) => {
   const parentTheme = useTheme();
@@ -26,7 +26,7 @@ export const ThemeProvider = ({
     <ThemeContext.Provider
       value={{
         theme,
-        toggleTheme: toggleTheme || parentTheme.toggleTheme,
+        // toggleTheme: toggleTheme || parentTheme.toggleTheme,
       }}
     >
       {isRootProvider && children}

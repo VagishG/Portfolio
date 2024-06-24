@@ -46,39 +46,40 @@ export const links = () => [
   { rel: 'author', href: '/humans.txt', type: 'text/plain' },
 ];
 
-export const loader = async ({ request, context }) => {
-  const { url } = request;
-  const { pathname } = new URL(url);
-  const pathnameSliced = pathname.endsWith('/') ? pathname.slice(0, -1) : url;
-  const canonicalUrl = `${config.url}${pathnameSliced}`;
+// export const loader = async ({ request, context }) => {
+//   const { url } = request;
+//   console.log(request)
+//   const { pathname } = new URL(url);
+//   const pathnameSliced = pathname.endsWith('/') ? pathname.slice(0, -1) : url;
+//   // const canonicalUrl = `${config.url}${pathnameSliced}`;
 
-  const { getSession, commitSession } = createCookieSessionStorage({
-    cookie: {
-      name: '__session',
-      httpOnly: true,
-      maxAge: 604_800,
-      path: '/',
-      sameSite: 'lax',
-      secrets: [context.cloudflare.env.SESSION_SECRET || ' '],
-      secure: true,
-    },
-  });
+//   const { getSession, commitSession } = createCookieSessionStorage({
+//     cookie: {
+//       name: '__session',
+//       httpOnly: true,
+//       maxAge: 604_800,
+//       path: '/',
+//       sameSite: 'lax',
+//       secrets: [context.cloudflare.env.SESSION_SECRET || ' '],
+//       secure: true,
+//     },
+//   });
 
-  const session = await getSession(request.headers.get('Cookie'));
-  const theme = session.get('theme') || 'dark';
+//   const session = await getSession(request.headers.get('Cookie'));
+//   const theme = session.get('theme') || 'dark';
 
-  return json(
-    { canonicalUrl, theme },
-    {
-      headers: {
-        'Set-Cookie': await commitSession(session),
-      },
-    }
-  );
-};
+//   return json(
+//     { theme },
+//     {
+//       headers: {
+//         'Set-Cookie': await commitSession(session),
+//       },
+//     }
+//   );
+// };
 
 export default function App() {
-  let { canonicalUrl, theme } = useLoaderData();
+  let theme = "dark"
   const fetcher = useFetcher();
   const { state } = useNavigation();
 
@@ -86,12 +87,12 @@ export default function App() {
     theme = fetcher.formData.get('theme');
   }
 
-  function toggleTheme(newTheme) {
-    fetcher.submit(
-      { theme: newTheme ? newTheme : theme === 'dark' ? 'light' : 'dark' },
-      { action: '/api/set-theme', method: 'post' }
-    );
-  }
+  // function toggleTheme(newTheme) {
+  //   fetcher.submit(
+  //     { theme: newTheme ? newTheme : theme === 'dark' ? 'light' : 'dark' },
+  //     { action: '/api/set-theme', method: 'post' }
+  //   );
+  // }
 
 
 
@@ -109,10 +110,10 @@ export default function App() {
         <style dangerouslySetInnerHTML={{ __html: themeStyles }} />
         <Meta />
         <Links />
-        <link rel="canonical" href={canonicalUrl} />
+        {/* <link rel="canonical" href={canonicalUrl} /> */}
       </head>
       <body data-theme={theme}>
-        <ThemeProvider theme={theme} toggleTheme={toggleTheme}>
+        <ThemeProvider theme={theme}>
           <Progress />
           <VisuallyHidden showOnFocus as="a" className={styles.skip} href="#main-content">
             Skip to main content

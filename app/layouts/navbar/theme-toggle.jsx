@@ -5,7 +5,7 @@ import styles from './theme-toggle.module.css';
 
 export const ThemeToggle = ({ isMobile, ...rest }) => {
   const id = useId();
-  const { toggleTheme } = useTheme();
+  // const { toggleTheme } = useTheme();
   const maskId = `${id}theme-toggle-mask`;
 
   return (
@@ -14,7 +14,7 @@ export const ThemeToggle = ({ isMobile, ...rest }) => {
       className={styles.toggle}
       data-mobile={isMobile}
       aria-label="Toggle theme"
-      onClick={() => toggleTheme()}
+      onClick={() => {}}
       {...rest}
     >
       <svg aria-hidden className={styles.svg} width="38" height="38" viewBox="0 0 38 38">
