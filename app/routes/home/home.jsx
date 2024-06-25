@@ -1,6 +1,7 @@
 import sprTextureLarge from '~/assets/spr-lesson-builder-dark-large.jpg';
 import sprTexturePlaceholder from '~/assets/spr-lesson-builder-dark-placeholder.jpg';
 import sprTexture from '~/assets/netflix.jpg';
+import pexiflow from '~/assets/pexiflow.jpg';
 import { Footer } from '~/components/footer';
 import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
@@ -43,12 +44,12 @@ export const Home = () => {
   const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);
   const intro = useRef();
   const projectOne = useRef();
-  // const projectTwo = useRef();
+  const projectTwo = useRef();
   // const projectThree = useRef();
   const details = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne,details];
+    const sections = [intro, projectOne,projectTwo,details];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -90,11 +91,31 @@ export const Home = () => {
         sectionRef={intro}
         scrollIndicatorHidden={scrollIndicatorHidden}
       />
-      <ProjectSummary
+        <ProjectSummary
         id="project-1"
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
+        title="Pexiflow"
+        description="A simple and basic clone of netflix website with all the major working functonalities."
+        buttonText="View project"
+        buttonLink="pexiflow.in"
+        model={{
+          type: 'laptop',
+          alt: 'Netflix Clone',
+          textures: [ 
+            {
+              srcSet: `${pexiflow} 1280w, ${sprTextureLarge} 2560w`,
+              placeholder: sprTexturePlaceholder,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-2"
+        sectionRef={projectTwo}
+        visible={visibleSections.includes(projectTwo.current)}
+        index={2}
         title="Netflix Clone"
         description="A simple and basic clone of netflix website with all the major working functonalities."
         buttonText="View project"

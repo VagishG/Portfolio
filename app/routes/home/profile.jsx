@@ -14,6 +14,7 @@ import { Fragment, useState } from 'react';
 import { media } from '~/utils/style';
 import katakana from './katakana.svg';
 import styles from './profile.module.css';
+import resume from '~/assets/Vagish-Gupta-Resume.pdf';
 
 const ProfileText = ({ visible, titleId }) => (
   <Fragment>
@@ -52,42 +53,28 @@ export const Profile = ({ id, visible, sectionRef }) => {
           <div className={styles.content} ref={nodeRef}>
             <div className={styles.column}>
               <ProfileText visible={visible} titleId={titleId} />
-              <Button
-                secondary
-                className={styles.button}
-                data-visible={visible}
-                href="/contact"
-                icon="send"
-              >
-                Send me a message
-              </Button>
-            </div>
-            <div className={styles.column}>
-              {/* <div className={styles.tag} aria-hidden>
-                <Divider
-                  notchWidth="64px"
-                  notchHeight="8px"
-                  collapsed={!visible}
-                  collapseDelay={1000}
-                />
-                <div className={styles.tagText} data-visible={visible}>
-                  About me
-                </div>
-              </div> */}
-              <div className={styles.image}>
-                {/* <Image
-                  reveal
-                  delay={100}
-                  placeholder={profileImgPlaceholder}
-                  srcSet={`${profileImg} 480w, ${profileImgLarge} 960w`}
-                  width={960}
-                  height={1280}
-                  sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
-                  alt="Me smiling like a goofball at the Qwilr office in Sydney"
-                />
-                <svg className={styles.svg} data-visible={visible} viewBox="0 0 136 766">
-                  <use href={`${katakana}#katakana-profile`} />
-                </svg> */}
+              <div style={{display:'flex',gap:'1rem'}}>
+                <a href={resume}>
+                  <Button
+                    secondary
+                    className={styles.button}
+                    data-visible={visible}
+                    href=""
+                    icon="download"
+                  >
+                    Resume
+                  </Button>
+                </a>
+                <br />
+                <Button
+                  secondary
+                  className={styles.button}
+                  data-visible={visible}
+                  href="/contact"
+                  icon="send"
+                >
+                  Send me a message
+                </Button>
               </div>
             </div>
           </div>

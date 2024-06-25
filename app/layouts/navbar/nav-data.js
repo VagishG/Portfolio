@@ -1,5 +1,4 @@
 import config from '~/config.json';
-
 export const navLinks = [
   {
     label: 'Projects',
@@ -35,4 +34,9 @@ export const socialLinks = [
     url: `https://github.com/${config.github}`,
     icon: 'github',
   },
+  {
+    label: 'Linkedin',
+    url: `https://www.linkedin.com/in/vagish-gupta-15a644214/`,
+    icon: 'linkdin',
+  }
 ];
