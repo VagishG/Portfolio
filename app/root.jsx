@@ -46,37 +46,37 @@ export const links = () => [
   { rel: 'author', href: '/humans.txt', type: 'text/plain' },
 ];
 
-// export const loader = async ({ request, context }) => {
-//   const { url } = request;
-//   console.log(request)
-//   const { pathname } = new URL(url);
-//   const pathnameSliced = pathname.endsWith('/') ? pathname.slice(0, -1) : url;
-//   // const canonicalUrl = `${config.url}${pathnameSliced}`;
+export const loader = async ({ request, context }) => {
+  const { url } = request;
+  console.log(request)
+  const { pathname } = new URL(url);
+  const pathnameSliced = pathname.endsWith('/') ? pathname.slice(0, -1) : url;
+  // const canonicalUrl = `${config.url}${pathnameSliced}`;
 
-//   const { getSession, commitSession } = createCookieSessionStorage({
-//     cookie: {
-//       name: '__session',
-//       httpOnly: true,
-//       maxAge: 604_800,
-//       path: '/',
-//       sameSite: 'lax',
-//       secrets: [context.cloudflare.env.SESSION_SECRET || ' '],
-//       secure: true,
-//     },
-//   });
+  const { getSession, commitSession } = createCookieSessionStorage({
+    cookie: {
+      name: '__session',
+      httpOnly: true,
+      maxAge: 604_800,
+      path: '/',
+      sameSite: 'lax',
+      secrets: [context.cloudflare.env.SESSION_SECRET || ' '],
+      secure: true,
+    },
+  });
 
-//   const session = await getSession(request.headers.get('Cookie'));
-//   const theme = session.get('theme') || 'dark';
+  const session = await getSession(request.headers.get('Cookie'));
+  const theme = session.get('theme') || 'dark';
 
-//   return json(
-//     { theme },
-//     {
-//       headers: {
-//         'Set-Cookie': await commitSession(session),
-//       },
-//     }
-//   );
-// };
+  return json(
+    { theme },
+    {
+      headers: {
+        'Set-Cookie': await commitSession(session),
+      },
+    }
+  );
+};
 
 export default function App() {
   let theme = "dark"
