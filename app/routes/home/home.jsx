@@ -97,7 +97,7 @@ export const Home = () => {
         visible={visibleSections.includes(projectOne.current)}
         index={1}
         title="Pexiflow"
-        description="A simple and basic clone of netflix website with all the major working functonalities."
+        description="A One click portfolio publisher for all your needs."
         buttonText="View project"
         buttonLink="pexiflow.in"
         model={{
